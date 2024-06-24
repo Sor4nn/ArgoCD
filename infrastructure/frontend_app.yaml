@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend
+spec:
+  destination:
+    name: ''
+    namespace: frontend
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: frontend
+    repoURL: 'https://github.com/Sor4nn/ArgoCD'
+    targetRevision: master
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
